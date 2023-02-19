@@ -8,7 +8,7 @@ import java.util.List;
 public interface AppointmentRepository {
     List<Appointment> getAllAppointment(Long appointmentId);
 
-    void saveAppointment(Appointment appointment);
+    void saveAppointment(Appointment appointment,Long hospital);
 
     Appointment getAppointmentById(Long id);
 

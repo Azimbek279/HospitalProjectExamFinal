@@ -8,12 +8,12 @@
           crossorigin="anonymous">
 
     <style>
-        .container{
+        .container {
             display: block;
+            /*margin: auto;*/
             margin-top: 250px;
             margin-left: 570px;
-            font-size:30px;
-
+            font-size: 25px;
         }
     </style>
     <style>
@@ -48,11 +48,11 @@
             pointer-events: none;
         }
 
-        .inputbox input:valid ~span,
-        .inputbox input:focus ~span {
+        .inputbox input:valid ~ span,
+        .inputbox input:focus ~ span {
             color: #45f3ff;
             transform: translateX(-10px) translateY(-34px);
-            font-size: 0,75em;
+            font-size: 0, 75em;
         }
 
         .inputbox i {
@@ -68,8 +68,8 @@
             z-index: 9;
         }
 
-        .inputbox input:valid ~i,
-        .inputbox input:focus ~i {
+        .inputbox input:valid ~ i,
+        .inputbox input:focus ~ i {
             height: 44px;
         }
     </style>
@@ -89,37 +89,111 @@
         }
 
         .shadow__btn {
-            background: rgb(0,140,255);
-            box-shadow: 0 0 25px rgb(0,140,255);
+            background: rgb(0, 140, 255);
+            box-shadow: 0 0 25px rgb(0, 140, 255);
         }
 
         .shadow__btn:hover {
-            box-shadow: 0 0 5px rgb(0,140,255),
-            0 0 25px rgb(0,140,255),
-            0 0 50px rgb(0,140,255),
-            0 0 100px rgb(0,140,255);
+            box-shadow: 0 0 5px rgb(0, 140, 255),
+            0 0 25px rgb(0, 140, 255),
+            0 0 50px rgb(0, 140, 255),
+            0 0 100px rgb(0, 140, 255);
         }
+    </style>
+
+    <style>
+        /* Multiple Toggle Switch by Abu Shafiyya */
+
+        fieldset {
+            border: 0;
+        }
+
+        /* Hide default radio */
+        .radio input[type="radio"] {
+            position: absolute;
+            visibility: hidden;
+            display: none;
+            opacity: 0;
+            z-index: -1;
+        }
+
         body{
             background-image: url("https://t4.ftcdn.net/jpg/01/23/17/13/360_F_123171377_H89YRmICSVdLq4YGiEhhTZQD7Xa7JSwQ.jpg");
+        }
+
+        /* Customizing label */
+        .radio label {
+            position: relative;
+            padding: 10px 20px 10px 25px;
+            cursor: pointer;
+            border-radius: 20px;
+            color: #2196F3;
+            margin: 0px 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .radio label, .radio label::before {
+            -webkit-transition: .25s all ease;
+            transition: .25s all ease;
+        }
+
+        .radio label::before {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            content: " ";
+            position: absolute;
+            top: 30%;
+            left: 0;
+            width: 1em;
+            height: 1em;
+            border: 2px solid #2196F3;
+        }
+
+        .radio input[type="radio"] + label::before {
+            border-radius: 1em;
+        }
+
+
+        /* Checked toggle */
+        .radio input[type="radio"]:checked + label {
+            color: #fff;
+            background: #2196F3;
+            z-index: 1;
+        }
+
+        .radio input[type="radio"]:checked + label {
+            padding: 10px 20px 10px 20px;
+        }
+
+        .radio input[type="radio"]:checked + label::before {
+            top: 4px;
+            width: 100%;
+            height: 2em;
+            z-index: -1;
+        }
+
+        .radio:hover input[type="radio"]:checked + label {
+            -webkit-box-shadow: #2195f338 0px 0px 0px 25px;
+            box-shadow: #2195f338 0px 0px 0px 25px;
         }
     </style>
 </head>
 <body>
 
-
-
-<form class="container" th:method="POST" th:action="@{/appointments/{id}/{appointmentId}/update (id=${appointment.getId()},appointmentId=${appointment.id})}" th:object="${appointment}">
+<form class="container" th:method="POST" th:action="@{/appointments/{id}/saveAppointment (id=${hospitalId})}"
+      th:object="${newAppointment}">
 
     <br>
-
     <div class="inputbox">
         <input type="date"  name="DeadLine" th:field="*{date}" placeholder="DeadLine">
-        <span>Name</span>
+        <span>Date</span>
         <i></i>
     </div>
     <br>
 
-    <button class="shadow__btn" type="submit">Update Appointment</button>
+
+    <button class="shadow__btn" type="submit">Save Appointment</button>
 
 </form>
 </body>

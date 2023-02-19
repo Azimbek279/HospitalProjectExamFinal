@@ -36,4 +36,7 @@ public class Appointment {
     @ManyToOne(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.EAGER)
     private Department department;
 
+    @ManyToOne(cascade = {REFRESH,PERSIST,DETACH,MERGE},fetch = FetchType.LAZY)
+    private Hospital hospital;
+
 }

@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import peaksoft.model.Appointment;
+import peaksoft.model.Hospital;
 import peaksoft.repository.AppointmentRepository;
 
 import java.util.List;
@@ -28,8 +29,12 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     }
 
     @Override
-    public void saveAppointment(Appointment appointment) {
-        entityManager.persist(appointment);
+    public void saveAppointment(Appointment appointment,Long hospitalId) {
+        Appointment appointment1 = new Appointment();
+        Hospital hospital = entityManager.find(Hospital.class, hospitalId);
+        appointment1.setHospital(hospital);
+        appointment1.setDate(appointment.getDate());
+        entityManager.persist(appointment1);
     }
 
     @Override

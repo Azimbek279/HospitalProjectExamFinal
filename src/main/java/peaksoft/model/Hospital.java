@@ -39,7 +39,7 @@ public class Hospital {
 //        patients.add(patient);
 //    }
 
-    @OneToMany(cascade = {ALL},fetch = FetchType.EAGER)
+    @OneToMany(cascade = {ALL},fetch = FetchType.EAGER,mappedBy = "hospital")
     private List<Appointment> appointments = new ArrayList<>();
 
     @OneToMany(cascade = {ALL},fetch = FetchType.LAZY,mappedBy = "hospital")
