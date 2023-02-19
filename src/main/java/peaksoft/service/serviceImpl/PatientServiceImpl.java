@@ -9,6 +9,7 @@ import peaksoft.repository.HospitalRepository;
 import peaksoft.repository.PatientRepository;
 import peaksoft.service.PatientService;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -16,12 +17,10 @@ import java.util.List;
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
-    private final HospitalRepository hospitalRepository;
 
     @Autowired
-    public PatientServiceImpl(PatientRepository patientRepository, HospitalRepository hospitalRepository) {
+    public PatientServiceImpl(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
-        this.hospitalRepository = hospitalRepository;
     }
 
 
@@ -54,5 +53,10 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void updatePatient(Long patientId, Patient patient) {
         patientRepository.updatePatient(patientId,patient);
+    }
+
+    @Override
+    public void assignPatient(Long appointmentId, Long patientId) throws IOException {
+        patientRepository.assignPatient(appointmentId,patientId);
     }
 }

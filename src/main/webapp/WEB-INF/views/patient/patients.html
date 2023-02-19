@@ -252,6 +252,17 @@
 <!--                            <li><a href=""><i class="fab fa-instagram"></i></a></li>-->
 <!--                            <li><a href=""><i class="fab fa-twitter"></i></a></li>-->
 <!--                        </ul>-->
+                        <td><a th:href="@{/patients/edit/{id}(id=${hospitalId})}">
+                            <button>Update</button>
+                        </a>
+
+                         <br>
+
+                        <td><a >
+                            <form th:method="DELETE" th:action="@{/patients/{id}/{hosId}(id=${patient.getId()},hosId=${hospitalId})}">
+                                <button>DELETE</button>
+                            </form>
+                        </a>
                     </div>
                 </div>
             </div>

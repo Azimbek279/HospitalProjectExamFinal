@@ -5,21 +5,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.model.Appointment;
+import peaksoft.model.Patient;
 import peaksoft.service.AppointmentService;
+import peaksoft.service.PatientService;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/appointments")
 public class AppointmentApi {
 
     private final AppointmentService appointmentService;
+    private final PatientService patientService;
 
     @Autowired
-    public AppointmentApi(AppointmentService appointmentService) {
+    public AppointmentApi(AppointmentService appointmentService, PatientService patientService) {
         this.appointmentService = appointmentService;
+        this.patientService = patientService;
     }
 
     @GetMapping("/{id}")
-    public String getAllAppointment(@PathVariable Long id, Model model){
+    public String getAllAppointment(@PathVariable Long id, Model model,
+                                    @ModelAttribute("patient")Patient patient){
+        model.addAttribute("patients",patientService.getAllPatient(id));
         model.addAttribute("appointments",appointmentService.getAllAppointment(id));
         model.addAttribute("hospitalId",id);
         return "appointment/appointments";
@@ -60,5 +68,13 @@ public class AppointmentApi {
                                         @PathVariable("hosId")Long hosId){
         appointmentService.deleteAppointmentById(id);
         return "redirect:/appointments/"+hosId;
+    }
+
+    @PostMapping("{appointmentId}/assignPatient")
+    public String assignPatient(@PathVariable("appointmentId")Long appointmentId,
+                                @ModelAttribute("patient")Patient patient) throws IOException {
+        Long id = patient.getId();
+        patientService.assignPatient(appointmentId,id);
+        return "redirect:/appointments/"+appointmentId;
     }
 }

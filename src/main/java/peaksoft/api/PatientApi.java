@@ -44,6 +44,8 @@ public class PatientApi {
 
     @GetMapping("/edit/{id}")
     public String updatePatient(@PathVariable Long id,Model model){
+        model.addAttribute("genderMale",Gender.MALE);
+        model.addAttribute("genderFeMale",Gender.FEMALE);
         Patient patient = patientService.getPatientById(id);
         model.addAttribute("patient",patient);
         model.addAttribute("hospitalId",patient.getHospital().getId());

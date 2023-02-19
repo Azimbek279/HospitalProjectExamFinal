@@ -5,11 +5,14 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import peaksoft.model.Appointment;
+import peaksoft.model.Department;
 import peaksoft.model.Hospital;
 import peaksoft.model.Patient;
 import peaksoft.repository.HospitalRepository;
 import peaksoft.repository.PatientRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 @Repository
@@ -64,5 +67,22 @@ public class PatientRepositoryImpl implements PatientRepository {
         patient1.setEmail(patient.getPhoneNumber());
         patient1.setGender(patient.getGender());
         entityManager.merge(patient);
+    }
+
+    @Override
+    public void assignPatient(Long appointmentId, Long patientId) throws IOException {
+        Patient patient = entityManager.find(Patient.class, patientId);
+        Appointment appointment = entityManager.find(Appointment.class, appointmentId);
+        if (appointment.getPatient()!=null){
+            for (Patient p: appointment.getHospital().getPatients()) {
+                if (p.getId()==patientId){
+                    throw new IOException("Bul Patient uje koshulgan");
+                }
+            }
+        }
+        patient.addAppointment(appointment);
+        appointment.setPatient(patient);
+        entityManager.merge(patient);
+        entityManager.merge(appointment);
     }
 }

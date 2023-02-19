@@ -85,7 +85,7 @@
 <!--        <th scope="col">CountStudents</th>-->
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
-<!--        <th scope="col">Courses</th>-->
+        <th scope="col">AssignPatient</th>
     </tr>
     </thead>
     <tbody class="table-success">
@@ -104,6 +104,21 @@
             <button>DELETE</button>
         </form>
     </a>
+
+        <td>
+            <form th:method="POST"
+                  th:action="@{/appointments/{appointmentId}/assignPatient(appointmentId=${appointment.getId()})}">
+                <select style="width: 90px" name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        th:object="${patient}"
+                        th:field="*{id}">
+                    <option th:each="patient : ${patients}"
+                            th:value="${patient.id}"
+                            th:text="${patient.firstName}"></option>
+                </select>
+                <input type="submit" name="text" class="input" value="sumbit" placeholder="Type here...">
+                <!--                <input type="submit" value="submit"/>-->
+            </form>
+        </td>
 
 <!--        <td><a th:href="@{/courses/courses/{id}(id=${company.id})}">-->
 <!--            <button style="height: 40px; width: 95px; background-color:yellow;">Course</button>-->

@@ -26,8 +26,9 @@ public class Appointment {
     @Column(name = "date")
     private LocalDate date;
 
-    @ManyToOne(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.LAZY)
     private Patient patient;
+
 
     @ManyToOne(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.LAZY)
     private Doctor doctor;
