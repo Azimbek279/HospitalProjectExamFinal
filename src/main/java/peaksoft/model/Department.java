@@ -39,5 +39,15 @@ public class Department {
     @ManyToOne(cascade = {REFRESH,PERSIST,MERGE,DETACH},fetch = FetchType.EAGER)
     private Hospital hospital;
 
+    @OneToMany(cascade = {REFRESH,MERGE,DETACH,PERSIST},fetch = FetchType.EAGER,mappedBy = "department")
+    private List<Appointment> appointments = new ArrayList<>();
+
+    public void addAppointment(Appointment appointment){
+        if (appointments==null){
+            appointments = new ArrayList<>();
+        }
+        appointments.add(appointment);
+    }
+
 
 }

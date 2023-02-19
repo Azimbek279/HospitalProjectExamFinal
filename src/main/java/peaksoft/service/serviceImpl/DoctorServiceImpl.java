@@ -9,6 +9,7 @@ import peaksoft.repository.DoctorRepository;
 import peaksoft.repository.HospitalRepository;
 import peaksoft.service.DoctorService;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -50,5 +51,10 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void updateDoctor(Long doctorId, Doctor doctor) {
         doctorRepository.updateDoctor(doctorId,doctor);
+    }
+
+    @Override
+    public void assignDoctor(Long appointmentId, Long doctorId) throws IOException {
+        doctorRepository.assignDoctor(appointmentId,doctorId);
     }
 }

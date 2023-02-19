@@ -52,7 +52,7 @@ public class PatientApi {
         return "patient/updatePatient";
     }
 
-    @PostMapping("{id}/{patientId}/update")
+    @PostMapping("/{id}/{patientId}/update")
     public String updateSavePatient(@PathVariable("id")Long id,
                                     @PathVariable("patientId")Long patientId,
                                     @ModelAttribute("patient")Patient patient){

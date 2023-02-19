@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import peaksoft.model.Appointment;
 import peaksoft.model.Department;
 import peaksoft.model.Doctor;
 import peaksoft.model.Hospital;
@@ -70,5 +71,22 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         doctor.addDepartments(department);
         entityManager.merge(department);
         entityManager.merge(doctor);
+    }
+
+    @Override
+    public void AssignDepartmentToAppointment(Long appointmentId, Long departmentId) throws IOException {
+        Department department = entityManager.find(Department.class, departmentId);
+        Appointment appointment = entityManager.find(Appointment.class, appointmentId);
+        if (appointment.getDepartment() != null){
+            for (Department d: appointment.getHospital().getDepartments()) {
+                if (d.getId() ==departmentId){
+                    throw  new IOException("but uje assign bolgon");
+                }
+            }
+        }
+        department.addAppointment(appointment);
+        appointment.setDepartment(department);
+        entityManager.merge(department);
+        entityManager.merge(appointment);
     }
 }

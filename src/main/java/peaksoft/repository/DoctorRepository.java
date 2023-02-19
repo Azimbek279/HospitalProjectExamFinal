@@ -3,6 +3,7 @@ package peaksoft.repository;
 import peaksoft.model.Doctor;
 import peaksoft.model.Patient;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface DoctorRepository {
@@ -17,4 +18,6 @@ public interface DoctorRepository {
     void deleteDoctorById(Long id);
 
     void updateDoctor(Long doctorId,Doctor doctor);
+
+    void assignDoctor(Long appointmentId,Long doctorId) throws IOException;
 }

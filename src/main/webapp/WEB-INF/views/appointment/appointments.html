@@ -86,6 +86,8 @@
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
         <th scope="col">AssignPatient</th>
+        <th scope="col">AssignDoctor</th>
+        <th scope="col">AssignDepartment</th>
     </tr>
     </thead>
     <tbody class="table-success">
@@ -114,6 +116,36 @@
                     <option th:each="patient : ${patients}"
                             th:value="${patient.id}"
                             th:text="${patient.firstName}"></option>
+                </select>
+                <input type="submit" name="text" class="input" value="sumbit" placeholder="Type here...">
+                <!--                <input type="submit" value="submit"/>-->
+            </form>
+        </td>
+
+        <td>
+            <form th:method="POST"
+                  th:action="@{/appointments/{appointmentId}/assignDoctor(appointmentId=${appointment.getId()})}">
+                <select style="width: 90px" name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        th:object="${doctor}"
+                        th:field="*{id}">
+                    <option th:each="doctor : ${doctors}"
+                            th:value="${doctor.id}"
+                            th:text="${doctor.firstName}"></option>
+                </select>
+                <input type="submit" name="text" class="input" value="sumbit" placeholder="Type here...">
+                <!--                <input type="submit" value="submit"/>-->
+            </form>
+        </td>
+
+        <td>
+            <form th:method="POST"
+                  th:action="@{/appointments/{appointmentId}/assignDepartment(appointmentId=${appointment.getId()})}">
+                <select style="width: 90px" name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        th:object="${department}"
+                        th:field="*{id}">
+                    <option th:each="department : ${departments}"
+                            th:value="${department.id}"
+                            th:text="${department.name}"></option>
                 </select>
                 <input type="submit" name="text" class="input" value="sumbit" placeholder="Type here...">
                 <!--                <input type="submit" value="submit"/>-->

@@ -66,7 +66,8 @@ public class PatientRepositoryImpl implements PatientRepository {
         patient1.setEmail(patient.getEmail());
         patient1.setEmail(patient.getPhoneNumber());
         patient1.setGender(patient.getGender());
-        entityManager.merge(patient);
+//        patient1.setHospital(patient.getHospital());
+        entityManager.merge(patient1);
     }
 
     @Override

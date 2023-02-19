@@ -5,8 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.model.Appointment;
+import peaksoft.model.Department;
+import peaksoft.model.Doctor;
 import peaksoft.model.Patient;
 import peaksoft.service.AppointmentService;
+import peaksoft.service.DepartmentService;
+import peaksoft.service.DoctorService;
 import peaksoft.service.PatientService;
 
 import java.io.IOException;
@@ -18,15 +22,25 @@ public class AppointmentApi {
     private final AppointmentService appointmentService;
     private final PatientService patientService;
 
+    private final DepartmentService departmentService;
+
+    private final DoctorService doctorService;
+
     @Autowired
-    public AppointmentApi(AppointmentService appointmentService, PatientService patientService) {
+    public AppointmentApi(AppointmentService appointmentService, PatientService patientService, DepartmentService departmentService, DoctorService doctorService) {
         this.appointmentService = appointmentService;
         this.patientService = patientService;
+        this.departmentService = departmentService;
+        this.doctorService = doctorService;
     }
 
     @GetMapping("/{id}")
     public String getAllAppointment(@PathVariable Long id, Model model,
-                                    @ModelAttribute("patient")Patient patient){
+                                    @ModelAttribute("patient")Patient patient,
+                                    @ModelAttribute("doctor")Doctor doctor,
+                                    @ModelAttribute("department")Department department){
+        model.addAttribute("departments",departmentService.getAllDepartment(id));
+        model.addAttribute("doctors",doctorService.getAllDoctors(id));
         model.addAttribute("patients",patientService.getAllPatient(id));
         model.addAttribute("appointments",appointmentService.getAllAppointment(id));
         model.addAttribute("hospitalId",id);
@@ -75,6 +89,22 @@ public class AppointmentApi {
                                 @ModelAttribute("patient")Patient patient) throws IOException {
         Long id = patient.getId();
         patientService.assignPatient(appointmentId,id);
+        return "redirect:/appointments/"+appointmentId;
+    }
+
+    @PostMapping("{appointmentId}/assignDoctor")
+    public String assignDoctor(@PathVariable("appointmentId")Long appointmentId,
+                               @ModelAttribute("doctor") Doctor doctor) throws IOException {
+        Long id = doctor.getId();
+        doctorService.assignDoctor(appointmentId,id);
+        return "redirect:/appointments/"+appointmentId;
+    }
+
+    @PostMapping("{appointmentId}/assignDepartment")
+    public String assignDepartmentToAppointment(@PathVariable("appointmentId")Long appointmentId,
+                               @ModelAttribute("department") Department department) throws IOException {
+        Long id = department.getId();
+        departmentService.AssignDepartmentToAppointment(appointmentId,id);
         return "redirect:/appointments/"+appointmentId;
     }
 }

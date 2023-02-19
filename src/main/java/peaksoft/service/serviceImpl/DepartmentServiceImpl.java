@@ -48,4 +48,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void AssignDepartment(Long doctorId, Long departmentId) throws IOException {
         departmentRepository.AssignDepartment(doctorId,departmentId);
     }
+
+    @Override
+    public void AssignDepartmentToAppointment(Long appointmentId, Long departmentId) throws IOException {
+        departmentRepository.AssignDepartmentToAppointment(appointmentId,departmentId);
+    }
 }

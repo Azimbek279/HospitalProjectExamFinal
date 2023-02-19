@@ -5,10 +5,12 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import peaksoft.model.Appointment;
 import peaksoft.model.Doctor;
 import peaksoft.model.Hospital;
 import peaksoft.repository.DoctorRepository;
 
+import java.io.IOException;
 import java.util.List;
 @Repository
 @Transactional
@@ -63,5 +65,22 @@ public class DoctorRepositoryImpl implements DoctorRepository {
         doctor1.setEmail(doctor.getEmail());
         doctor1.setPosition(doctor.getPosition());
         entityManager.merge(doctor1);
+    }
+
+    @Override
+    public void assignDoctor(Long appointmentId, Long doctorId) throws IOException {
+        Doctor doctor = entityManager.find(Doctor.class, doctorId);
+        Appointment appointment = entityManager.find(Appointment.class, appointmentId);
+        if(appointment.getDoctor()!=null){
+            for (Doctor d: appointment.getHospital().getDoctors()) {
+                if(d.getId()==doctorId){
+                    throw new IOException("bul ujassign bolgon");
+                }
+            }
+        }
+        doctor.addAppointments(appointment);
+        appointment.setDoctor(doctor);
+        entityManager.merge(doctor);
+        entityManager.merge(appointment);
     }
 }
