@@ -23,7 +23,7 @@ public class Department {
             allocationSize = 1)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name",unique = true)
     private String name;
 
     @ManyToMany(cascade = {REFRESH,MERGE,DETACH,PERSIST},fetch = FetchType.EAGER,mappedBy = "departments")
