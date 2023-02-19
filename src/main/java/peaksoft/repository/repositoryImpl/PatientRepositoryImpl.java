@@ -36,6 +36,7 @@ public class PatientRepositoryImpl implements PatientRepository {
         patient1.setFirstName(patient.getFirstName());
         patient1.setLastName(patient.getLastName());
         patient1.setEmail(patient.getEmail());
+        patient1.setGender(patient.getGender());
         patient1.setPhoneNumber(patient.getPhoneNumber());
         patient1.setHospital(hospital);
         entityManager.persist(patient1);
@@ -58,7 +59,7 @@ public class PatientRepositoryImpl implements PatientRepository {
         patient1.setLastName(patient.getLastName());
         patient1.setEmail(patient.getEmail());
         patient1.setEmail(patient.getPhoneNumber());
-//        patient1.setGender(patient.getGender());
+        patient1.setGender(patient.getGender());
         entityManager.merge(patient);
     }
 }

@@ -17,6 +17,7 @@ public class DoctorApi {
     public DoctorApi(DoctorService doctorService) {
         this.doctorService = doctorService;
     }
+
     @GetMapping("/{id}")
     public String getAllDoctor(@PathVariable Long id,Model model){
         model.addAttribute("doctors",doctorService.getAllDoctors(id));
@@ -32,7 +33,8 @@ public class DoctorApi {
     }
 
     @PostMapping("/{id}/saveDoctor")
-    public String saveDoctor(@ModelAttribute("newDoctor") Doctor doctor,@PathVariable("id") Long id){
+    public String saveDoctor(@ModelAttribute("newDoctor") Doctor doctor,
+                             @PathVariable("id") Long id){
         doctorService.saveDoctor(doctor,id);
         return "redirect:/doctors/" + id;
     }

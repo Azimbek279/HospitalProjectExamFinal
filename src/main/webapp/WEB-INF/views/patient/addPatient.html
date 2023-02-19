@@ -11,8 +11,8 @@
         .container {
             display: block;
             /*margin: auto;*/
-            margin-top: 10px;
-            margin-left: 50px;
+            margin-top: 100px;
+            margin-left: 570px;
             font-size: 25px;
         }
     </style>
@@ -35,6 +35,10 @@
             letter-spacing: 0.05em;
             transition: 0.5s;
             z-index: 10;
+        }
+
+        body{
+            background-image: url("https://t4.ftcdn.net/jpg/01/23/17/13/360_F_123171377_H89YRmICSVdLq4YGiEhhTZQD7Xa7JSwQ.jpg");
         }
 
         .inputbox span {
@@ -183,14 +187,14 @@
     <br>
     <div class="inputbox">
         <input required="required" type="text" th:field="*{firstName}">
-        <span>firstName</span>
+        <span>FirstName</span>
         <i></i>
     </div>
     <br>
 
     <div class="inputbox">
         <input required="required" type="text" th:field="*{lastName}">
-        <span>lastName</span>
+        <span>LastName</span>
         <i></i>
     </div>
     <br>
@@ -209,6 +213,12 @@
         <i></i>
     </div>
     <br>
+    <fieldset id="switch" class="radio" th:field="*{gender}">
+        <input name="switch" id="on" type="radio" th:values="*{gender.MALE}">
+        <label for="on">MALE</label>
+        <input name="switch" id="off" type="radio" th:values="*{gender.FEMALE}">
+        <label for="off">FEMALE</label>
+    </fieldset>
 
     <!--    <label>-->
     <!--        <select th:field="*{gender}">-->

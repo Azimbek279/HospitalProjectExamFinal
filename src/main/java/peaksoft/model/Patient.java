@@ -29,8 +29,8 @@ public class Patient {
     private String lastName;
 
     private String phoneNumber;
-
-//    private Gender gender;
+@Column(name = "gender")
+    private Gender gender;
 
     private String email;
 
