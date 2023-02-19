@@ -23,7 +23,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void saveDepartment(Department department, Long hospitalId) {
-        departmentRepository.saveDepartment(department,hospitalId);
+        Department department1 = new Department();
+        department1.setName(department.getName());
+        departmentRepository.saveDepartment(department1,hospitalId);
     }
 
     @Override

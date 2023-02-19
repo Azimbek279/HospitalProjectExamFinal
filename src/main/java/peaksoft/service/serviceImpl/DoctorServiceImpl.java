@@ -15,12 +15,10 @@ import java.util.List;
 public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
 
-    private final HospitalRepository hospitalRepository;
 
     @Autowired
-    public DoctorServiceImpl(DoctorRepository doctorRepository, HospitalRepository hospitalRepository) {
+    public DoctorServiceImpl(DoctorRepository doctorRepository) {
         this.doctorRepository = doctorRepository;
-        this.hospitalRepository = hospitalRepository;
     }
 
     @Override
@@ -32,13 +30,10 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void saveDoctor(Doctor doctor, Long hospitalId) {
         Doctor doctor1 = new Doctor();
-//        doctor1.setId(doctor.getId());
         doctor1.setFirstName(doctor.getFirstName());
         doctor1.setLastName(doctor.getLastName());
         doctor1.setEmail(doctor.getEmail());
         doctor1.setPosition(doctor.getPosition());
-//        doctorRepository.saveDoctorInfo(doctor1);
-//        doctor1.setHospital(hospitalRepository.getHospitalById(doctor.getHospital().getId()));
         doctorRepository.saveDoctor(doctor1,hospitalId);
     }
 

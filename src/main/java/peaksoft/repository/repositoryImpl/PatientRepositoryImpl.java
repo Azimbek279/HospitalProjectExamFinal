@@ -31,22 +31,14 @@ public class PatientRepositoryImpl implements PatientRepository {
 
     @Override
     public void savePatient(Patient patient, Long hospitalId) {
+        Patient patient1 = new Patient();
         Hospital hospital = hospitalRepository.getHospitalById(hospitalId);
-        patient.setHospital(hospital);
-        hospital.addPatient(patient);
-        entityManager.merge(patient);
-
-//        Hospital hospital = entityManager.find(Hospital.class, hospitalId);
-//        hospital.addPatient(patient);
-//        patient.setHospital(hospital);
-//
-////        entityManager.merge(patient);
-//        entityManager.merge(patient);
-
-//        Hospital hospital = entityManager.find(Hospital.class, hospitalId);
-//        patient.setHospital(hospital);
-//        hospital.addPatient(patient);
-
+        patient1.setFirstName(patient.getFirstName());
+        patient1.setLastName(patient.getLastName());
+        patient1.setEmail(patient.getEmail());
+        patient1.setPhoneNumber(patient.getPhoneNumber());
+        patient1.setHospital(hospital);
+        entityManager.persist(patient1);
     }
 
     @Override

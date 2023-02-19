@@ -29,10 +29,11 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public void saveDepartment(Department department, Long hospitalId) {
+        Department department1 = new Department();
         Hospital hospital = entityManager.find(Hospital.class, hospitalId);
-        hospital.addDepartment(department);
-        department.setHospital(hospital);
-        entityManager.merge(department);
+        department1.setName(department.getName());
+        department1.setHospital(hospital);
+        entityManager.persist(department1);
     }
 
     @Override

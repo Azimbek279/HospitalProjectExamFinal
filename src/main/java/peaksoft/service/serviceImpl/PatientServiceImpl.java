@@ -32,7 +32,12 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void savePatient(Patient patient, Long hospitalId) {
-        patientRepository.savePatient(patient, hospitalId);
+        Patient patient1 = new Patient();
+        patient1.setFirstName(patient.getFirstName());
+        patient1.setLastName(patient.getLastName());
+        patient1.setPhoneNumber(patient.getPhoneNumber());
+        patient1.setEmail(patient.getEmail());
+        patientRepository.savePatient(patient1, hospitalId);
     }
 
     @Override
