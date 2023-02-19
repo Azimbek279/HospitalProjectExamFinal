@@ -26,8 +26,15 @@ public class Department {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {REFRESH,MERGE,DETACH,PERSIST},fetch = FetchType.EAGER,mappedBy = "departments")
     private List<Doctor> doctors = new ArrayList<>();
+
+    public void addDoctors(Doctor doctor){
+        if (doctors == null){
+            doctors = new ArrayList<>();
+        }
+        doctors.add(doctor);
+    }
 
     @ManyToOne(cascade = {REFRESH,PERSIST,MERGE,DETACH},fetch = FetchType.EAGER)
     private Hospital hospital;

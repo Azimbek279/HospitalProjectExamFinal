@@ -42,8 +42,8 @@ public class Patient {
     @ManyToOne(cascade = {REFRESH,MERGE,PERSIST})
     private Hospital hospital;
 
-//    @OneToMany(cascade = {ALL},fetch = FetchType.LAZY,mappedBy = "patient")
-//    private List<Appointment> appointments = new ArrayList<>();
+    @OneToMany(cascade = {ALL},fetch = FetchType.LAZY,mappedBy = "patient")
+    private List<Appointment> appointments = new ArrayList<>();
 
 
 }

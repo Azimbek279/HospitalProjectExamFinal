@@ -2,6 +2,7 @@ package peaksoft.service;
 
 import peaksoft.model.Department;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface DepartmentService {
@@ -15,4 +16,6 @@ public interface DepartmentService {
     void deleteDepartmentById(Long id);
 
     void updateDepartment(Long departmentId,Department department);
+
+    void AssignDepartment(Long doctorId,Long departmentId) throws IOException;
 }

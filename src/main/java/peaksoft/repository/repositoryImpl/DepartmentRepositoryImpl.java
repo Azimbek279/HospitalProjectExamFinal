@@ -6,9 +6,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import peaksoft.model.Department;
+import peaksoft.model.Doctor;
 import peaksoft.model.Hospital;
 import peaksoft.repository.DepartmentRepository;
 
+import java.io.IOException;
 import java.util.List;
 @Repository
 @Transactional
@@ -51,5 +53,22 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         Department department1 = entityManager.find(Department.class, departmentId);
         department1.setName(department.getName());
         entityManager.merge(department1);
+    }
+
+    @Override
+    public void AssignDepartment(Long doctorId, Long departmentId) throws IOException {
+        Department department = entityManager.find(Department.class, departmentId);
+        Doctor doctor = entityManager.find(Doctor.class, doctorId);
+        if (doctor.getDepartments() != null){
+            for (Department d: doctor.getDepartments()) {
+                if(d.getId()==departmentId){
+                    throw new IOException("Bul Department uje koshulgan");
+                }
+            }
+        }
+        department.addDoctors(doctor);
+        doctor.addDepartments(department);
+        entityManager.merge(department);
+        entityManager.merge(doctor);
     }
 }

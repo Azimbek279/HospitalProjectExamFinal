@@ -6,6 +6,7 @@ import peaksoft.model.Department;
 import peaksoft.repository.DepartmentRepository;
 import peaksoft.service.DepartmentService;
 
+import java.io.IOException;
 import java.util.List;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -41,5 +42,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void updateDepartment(Long departmentId, Department department) {
         departmentRepository.updateDepartment(departmentId,department);
+    }
+
+    @Override
+    public void AssignDepartment(Long doctorId, Long departmentId) throws IOException {
+        departmentRepository.AssignDepartment(doctorId,departmentId);
     }
 }

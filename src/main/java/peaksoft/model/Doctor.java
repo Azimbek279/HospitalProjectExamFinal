@@ -38,8 +38,15 @@ public class Doctor {
     @OneToMany(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.EAGER,mappedBy = "doctor")
     private List<Appointment> appointments = new ArrayList<>();
 
-    @ManyToMany(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.EAGER,mappedBy = "doctors")
+    @ManyToMany(cascade = {REFRESH,MERGE,DETACH,PERSIST},fetch = FetchType.LAZY)
     private List<Department> departments = new ArrayList<>();
+
+    public void addDepartments(Department department){
+        if (departments==null){
+            departments = new ArrayList<>();
+        }
+        departments.add(department);
+    }
 
     @ManyToOne(cascade = {REFRESH,MERGE,DETACH},fetch = FetchType.EAGER)
     private Hospital hospital;
