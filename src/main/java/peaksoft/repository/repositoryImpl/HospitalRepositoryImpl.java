@@ -14,7 +14,12 @@ import java.util.List;
 public class HospitalRepositoryImpl implements HospitalRepository {
 
     @PersistenceContext
-    private  EntityManager entityManager;
+    private  final EntityManager entityManager;
+
+    @Autowired
+    public HospitalRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
 
     @Override
@@ -25,7 +30,6 @@ public class HospitalRepositoryImpl implements HospitalRepository {
     @Override
     public void saveHospital(Hospital hospital) {
         entityManager.persist(hospital);
-        System.out.println("siuu");
     }
 
     @Override
@@ -36,7 +40,6 @@ public class HospitalRepositoryImpl implements HospitalRepository {
     @Override
     public void deleteHospitalById(Long id) {
         entityManager.remove(entityManager.find(Hospital.class,id));
-        System.out.println("dede");
     }
 
     @Override

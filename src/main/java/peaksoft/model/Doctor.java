@@ -23,12 +23,16 @@ public class Doctor {
             allocationSize = 1)
     private Long id;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "position")
     private String position;
 
+    @Column(name = "email")
     private String email;
 
     @OneToMany(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.EAGER,mappedBy = "doctor")

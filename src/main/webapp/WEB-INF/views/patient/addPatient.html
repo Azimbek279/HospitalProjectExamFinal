@@ -199,6 +199,8 @@
     </div>
     <br>
 
+
+
     <div class="inputbox">
         <input required="required" type="text" th:field="*{phoneNumber}">
         <span>PhoneNumber</span>
@@ -213,26 +215,25 @@
         <i></i>
     </div>
     <br>
-    <fieldset id="switch" class="radio" th:field="*{gender}">
-        <input name="switch" id="on" type="radio" th:values="*{gender.MALE}">
-        <label for="on">MALE</label>
-        <input name="switch" id="off" type="radio" th:values="*{gender.FEMALE}">
-        <label for="off">FEMALE</label>
-    </fieldset>
 
-    <!--    <label>-->
-    <!--        <select th:field="*{gender}">-->
-    <!--            <option th:value="*{gender.MALE}">MALE</option>-->
-    <!--            <option th:value="*{gender.FEMALE}">FEMALE</option>-->
-    <!--        </select>-->
-    <!--    </label>-->
 
-    <!--    <fieldset id="switch" class="radio" th:field="*{gender}">-->
-    <!--        <input name="switch" id="on" type="radio" th:value="*{gender.FEMALE}">-->
-    <!--        <label for="on">FEMALE</label>-->
-    <!--        <input name="switch" id="off" type="radio" th:value="*{gender.MALE}">-->
-    <!--        <label for="off">MALE</label>-->
-    <!--    </fieldset>-->
+<!--        <fieldset id="switch" class="radio" th:field="*{gender}">-->
+<!--            <input name="switch" id="on"  type="radio"   >-->
+<!--            <label for="on" th:value="${genderMale}" >MALE</label>-->
+<!--            <input name="switch" id="off" type="radio"  >-->
+<!--            <label for="off" th:value="${genderFeMale}" >FEMALE</label>-->
+<!--       </fieldset>-->
+
+    <label >
+        <select style="width: 200px" th:field="*{gender}">
+            <option th:value="${genderMale}">MALE</option>
+            <option th:value="${genderFeMale}">FEMALE</option>
+        </select>
+    </label>
+    <br>
+
+
+
 
 
     <!--    <br>-->

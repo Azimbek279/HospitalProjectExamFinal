@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.model.Patient;
+import peaksoft.model.enums.Gender;
 import peaksoft.service.PatientService;
 
 @Controller
@@ -28,6 +29,8 @@ public class PatientApi {
     @GetMapping("/{id}/newPatient")
     public String createPatient(@PathVariable Long id,Model model){
         model.addAttribute("newPatient",new Patient());
+        model.addAttribute("genderMale", Gender.MALE);
+        model.addAttribute("genderFeMale",Gender.FEMALE);
         model.addAttribute("hospitalId",id);
         return "patient/addPatient";
     }

@@ -238,9 +238,10 @@
                         <span th:text="${patient.getFirstName()}">First Name</span>
                         <span th:text="${patient.getLastName()}">Last Name</span>
 <!--                        <h3>7</h3>-->
-                        <h3 th:text="${patient.getEmail()}">Email</h3>
+                        <h3 th:text="${patient.getEmail()}" >Email</h3>
                         <h3 th:text="${patient.getPhoneNumber()}">PhoneNumber</h3>
                         <h3 th:text="${patient.getGender()}">Gender</h3>
+
 <!--                        <img class="tem-img" src="https://github.com/free-source-code-bd/all-public-resource/blob/main/juv.jpg?raw=true" alt=""> &nbsp;-->
 <!--                        <img class="tem-img" src="https://github.com/free-source-code-bd/all-public-resource/blob/main/port.jpg?raw=true" alt="">  <br>-->
 <!--                        <p class="des">-->
@@ -260,7 +261,7 @@
 <br>
 <div style="text-align: center">
     <a th:href="@{/patients/{id}/newPatient(id=${hospitalId})}">
-        <button class="button" style="font-size: 30px;  margin: auto"> Add PATIENT</button>
+        <button class="button" style="font-size: 30px;  margin: auto"> ADD PATIENT</button>
     </a>
 </div>
 

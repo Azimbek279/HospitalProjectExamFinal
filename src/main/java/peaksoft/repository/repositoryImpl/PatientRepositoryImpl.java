@@ -3,6 +3,7 @@ package peaksoft.repository.repositoryImpl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import peaksoft.model.Hospital;
 import peaksoft.model.Patient;
@@ -15,11 +16,13 @@ import java.util.List;
 @Transactional
 public class PatientRepositoryImpl implements PatientRepository {
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     private final HospitalRepository hospitalRepository;
 
-    public PatientRepositoryImpl(HospitalRepository hospitalRepository) {
+    @Autowired
+    public PatientRepositoryImpl(EntityManager entityManager, HospitalRepository hospitalRepository) {
+        this.entityManager = entityManager;
         this.hospitalRepository = hospitalRepository;
     }
 

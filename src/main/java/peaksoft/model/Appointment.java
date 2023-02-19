@@ -23,6 +23,7 @@ public class Appointment {
             allocationSize = 1)
     private Long id;
 
+    @Column(name = "date")
     private LocalDate date;
 
     @ManyToOne(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.EAGER)

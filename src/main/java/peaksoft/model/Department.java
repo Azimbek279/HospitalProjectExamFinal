@@ -23,6 +23,7 @@ public class Department {
             allocationSize = 1)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
     @ManyToMany(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.LAZY)
