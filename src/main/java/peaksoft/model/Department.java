@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,16 @@ public class Department {
     @Column(name = "name",unique = true)
     private String name;
 
-    @ManyToMany(cascade = {REFRESH,MERGE,DETACH,PERSIST},fetch = FetchType.EAGER,mappedBy = "departments")
+    @ManyToMany(cascade = {REFRESH,MERGE,DETACH},fetch = FetchType.EAGER,mappedBy = "departments")
     private List<Doctor> doctors = new ArrayList<>();
+
+
+    public void addDoctorNull(Doctor doctor){
+        if (doctors == null){
+            doctors = new ArrayList<>();
+        }
+        doctors.add(doctor);
+    }
 
     public void addDoctors(Doctor doctor){
         if (doctors == null){

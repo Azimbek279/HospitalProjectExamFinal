@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import peaksoft.exception.NotFoundException;
 import peaksoft.model.Appointment;
 import peaksoft.model.Hospital;
 import peaksoft.model.Patient;
@@ -37,6 +38,9 @@ public class PatientRepositoryImpl implements PatientRepository {
     @Override
     public void savePatient(Patient patient, Long hospitalId) {
         Patient patient1 = new Patient();
+        if (hospitalRepository.getHospitalById(hospitalId) == null){
+            throw new NotFoundException(String.format("Hospital with id %d not found",hospitalId));
+        }
         Hospital hospital = hospitalRepository.getHospitalById(hospitalId);
         patient1.setFirstName(patient.getFirstName());
         patient1.setLastName(patient.getLastName());
@@ -44,6 +48,7 @@ public class PatientRepositoryImpl implements PatientRepository {
         patient1.setGender(patient.getGender());
         patient1.setPhoneNumber(patient.getPhoneNumber());
         patient1.setHospital(hospital);
+        hospital.plusPatient();
         entityManager.persist(patient1);
     }
 
@@ -54,6 +59,8 @@ public class PatientRepositoryImpl implements PatientRepository {
 
     @Override
     public void deletePatientById(Long id) {
+        Patient patient = entityManager.find(Patient.class,id);
+        patient.getHospital().minusPatient();
         entityManager.remove(entityManager.find(Patient.class,id));
     }
 

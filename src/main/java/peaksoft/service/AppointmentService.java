@@ -2,6 +2,7 @@ package peaksoft.service;
 
 import peaksoft.model.Appointment;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface AppointmentService {

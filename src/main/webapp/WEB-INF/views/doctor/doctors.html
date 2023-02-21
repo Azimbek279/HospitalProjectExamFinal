@@ -232,10 +232,16 @@
 </head>
 <body>
 
+<div style="text-align: center">
+    <a th:href="@{/hospitals}">
+        <button class="button1" style="font-size: 20px;  margin: auto"> Back</button>
+    </a>
+</div>
+
 <div class="container" th:each="doctor:${doctors}">
     <div class="card">
         <img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?w=2000" alt="Person" class="card__image">
-            <p class="card__name" th:text="${doctor.getEmail()}" >Doctor Email</p>
+            <p   class="card__name"  th:text="${doctor.getEmail()}" >Doctor Email</p>
 
         <div class="grid-container">
 
@@ -283,7 +289,7 @@
 <!--        </a>-->
 <!--            -->
         <br>
-        <td><a th:href="@{/doctors/edit/{id}(id=${hospitalId})}">
+        <td><a th:href="@{/doctors/edit/{hospitalId}(hospitalId=${hospitalId})}">
             <button>Update</button>
         </a>
         <br>

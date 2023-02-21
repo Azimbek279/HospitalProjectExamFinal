@@ -6,6 +6,7 @@ import peaksoft.model.Appointment;
 import peaksoft.repository.AppointmentRepository;
 import peaksoft.service.AppointmentService;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -18,7 +19,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<Appointment> getAllAppointment(Long appointmentId) {
+    public List<Appointment> getAllAppointment(Long appointmentId){
         return appointmentRepository.getAllAppointment(appointmentId);
     }
 

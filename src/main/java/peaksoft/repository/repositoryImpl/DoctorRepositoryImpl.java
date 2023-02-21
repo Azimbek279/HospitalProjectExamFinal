@@ -5,9 +5,12 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import peaksoft.exception.NotFoundException;
 import peaksoft.model.Appointment;
+import peaksoft.model.Department;
 import peaksoft.model.Doctor;
 import peaksoft.model.Hospital;
+import peaksoft.repository.DepartmentRepository;
 import peaksoft.repository.DoctorRepository;
 
 import java.io.IOException;
@@ -18,6 +21,7 @@ public class DoctorRepositoryImpl implements DoctorRepository {
 
     @PersistenceContext
     private final EntityManager entityManager;
+
 
     @Autowired
     public DoctorRepositoryImpl(EntityManager entityManager) {
@@ -33,12 +37,16 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     @Override
     public void saveDoctor(Doctor doctor,Long hospitalId) {
         Doctor doctor1 = new Doctor();
+        if (entityManager.find(Hospital.class, hospitalId) == null){
+            throw new NotFoundException(String.format("Hospital with id %d not found",hospitalId));
+        }
         Hospital hospital = entityManager.find(Hospital.class, hospitalId);
         doctor1.setFirstName(doctor.getFirstName());
         doctor1.setLastName(doctor.getLastName());
         doctor1.setEmail(doctor.getEmail());
         doctor1.setPosition(doctor.getPosition());
         doctor1.setHospital(hospital);
+        hospital.plusDoctor();
         entityManager.persist(doctor1);
     }
 
@@ -54,7 +62,16 @@ public class DoctorRepositoryImpl implements DoctorRepository {
 
     @Override
     public void deleteDoctorById(Long id) {
-        entityManager.remove(entityManager.find(Doctor.class,id));
+        Doctor doctor = entityManager.find(Doctor.class, id);
+        doctor.getHospital().minusDoctor();
+//        Department department = entityManager.find(Department.class, id);
+//        for (Doctor d: department.getDoctors()) {
+//            if (d.getDepartments() != null) {
+//                doctor.setDepartment(null);
+//            }
+//        }
+//        entityManager.remove(department.getDoctors());
+        entityManager.remove(doctor);
     }
 
     @Override

@@ -29,8 +29,20 @@ public class Hospital {
     @Column(name = "address")
     private String address;
 
+    private int count = 0;
+
+    private int doctorCount = 0;
+
     @OneToMany(cascade = {ALL},mappedBy = "hospital")
     private List<Patient> patients = new ArrayList<>();
+
+    public void plusPatient(){
+        count++;
+    }
+
+    public void minusPatient(){
+        count--;
+    }
 
 //    public void addPatient(Patient patient){
 //        if (patients == null){
@@ -43,8 +55,15 @@ public class Hospital {
     private List<Appointment> appointments = new ArrayList<>();
 
     @OneToMany(cascade = {ALL},fetch = FetchType.LAZY,mappedBy = "hospital")
-
     private List<Doctor> doctors = new ArrayList<>();
+
+    public void plusDoctor(){
+        doctorCount++;
+    }
+
+    public void minusDoctor(){
+        doctorCount--;
+    }
 
     @OneToMany(cascade = {ALL},fetch = FetchType.LAZY,mappedBy = "hospital")
     private List<Department> departments = new ArrayList<>();

@@ -17,7 +17,7 @@
     body {
       font-family: 'Open Sans', sans-serif;
       font-weight: 300;
-      line-height: 1.42em;
+      line-height: .42em;
       color:#A7A1AE;
       background-color:#1F2739;
       /*width: 80%;*/
@@ -69,7 +69,7 @@
     .container {
       text-align: left;
       overflow: hidden;
-      width: 90%;
+      width: 10%;
       margin: 0 auto;
       display: table;
       padding: 0 0 8em 0;
@@ -126,7 +126,8 @@
 
   <style>
     button {
-      padding: 17px 40px;
+      margin-right: 35px;
+      padding: 17px 25px;
       border-radius: 50px;
       border: 0;
       background-color: white;
@@ -163,8 +164,10 @@
 <table class="container" >
   <thead>
   <tr>
-    <th><h1>Hospital Name</h1></th>
-    <th><h1>Address</h1></th>
+    <th><h1>HospitalName</h1></th>
+    <th><h1>HospitalAddress</h1></th>
+    <th><h1>Patient Count</h1></th>
+    <th><h1>Doctor Count</h1></th>
 <!--    <th><h1>Clicks</h1></th>-->
 <!--    <th><h1>Average</h1></th>-->
   </tr>
@@ -174,6 +177,8 @@
   <tr th:each="hospital:${hospitals}">
     <td th:text="${hospital.getName()}"></td>
     <td th:text="${hospital.getAddress()}"></td>
+    <td th:text="${hospital.getCount()}"></td>
+    <td th:text="${hospital.getDoctorCount()}"></td>
 <!--    <td>6369</td>-->
 <!--    <td>01:32:50</td>-->
 

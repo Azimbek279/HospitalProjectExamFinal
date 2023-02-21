@@ -70,6 +70,11 @@
 
 </head>
 <body>
+<div style="text-align: left; margin: 10px">
+    <a th:href="@{/hospitals}">
+        <button class="button1" style="font-size: 20px; display: block:  margin: auto"> Back</button>
+    </a>
+</div>
 <!--<marquee behavior="scroll"  direction="left" ><span style="color: red; ">Мухаммед агай самый лучший!</span></marquee>-->
 
 <div class="text-center">
@@ -97,7 +102,7 @@
 <!--        <td th:text="${company.locatedCountry}"></td>-->
 <!--        <td th:text="${company.count}"></td>-->
 
-        <td><a th:href="@{/appointments/edit/{id}(id=${hospitalId})}">
+        <td><a th:href="@{/appointments/edit/{hospitalId}(hospitalId=${hospitalId})}">
             <button>Update</button>
         </a>
 

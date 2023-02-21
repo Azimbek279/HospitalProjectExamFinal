@@ -38,7 +38,8 @@ public class AppointmentApi {
     public String getAllAppointment(@PathVariable Long id, Model model,
                                     @ModelAttribute("patient")Patient patient,
                                     @ModelAttribute("doctor")Doctor doctor,
-                                    @ModelAttribute("department")Department department){
+                                    @ModelAttribute("department")Department department,
+                                    @ModelAttribute("appointment")Appointment appointment){
         model.addAttribute("departments",departmentService.getAllDepartment(id));
         model.addAttribute("doctors",doctorService.getAllDoctors(id));
         model.addAttribute("patients",patientService.getAllPatient(id));

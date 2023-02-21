@@ -58,6 +58,10 @@
             transform: translateX(-10px) translateY(-34px);
             font-size: 0, 75em;
         }
+        .inputbox input:invalid ~ span{
+            color: darkred;
+        }
+
 
         .inputbox i {
             position: absolute;
@@ -201,16 +205,17 @@
 
 
 
-    <div class="inputbox">
-        <input required="required" type="text" th:field="*{phoneNumber}">
-        <span>PhoneNumber</span>
+    <div class="inputbox inputbox2">
+
+        <input  value="+996" required="required" maxlength="12" pattern="+996[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="+996 123 456 789" type="number" th:field="*{phoneNumber}">
+        <span></span>
         <i></i>
     </div>
     <br>
 
 
-    <div class="inputbox">
-        <input required="required" type="text" th:field="*{email}">
+    <div class="inputbox inputbox2">
+        <input required="required" type="email" th:field="*{email}">
         <span>Email</span>
         <i></i>
     </div>
