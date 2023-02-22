@@ -64,13 +64,6 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     public void deleteDoctorById(Long id) {
         Doctor doctor = entityManager.find(Doctor.class, id);
         doctor.getHospital().minusDoctor();
-//        Department department = entityManager.find(Department.class, id);
-//        for (Doctor d: department.getDoctors()) {
-//            if (d.getDepartments() != null) {
-//                doctor.setDepartment(null);
-//            }
-//        }
-//        entityManager.remove(department.getDoctors());
         entityManager.remove(doctor);
     }
 
