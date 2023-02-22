@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.print.Doc;
 import java.time.LocalDate;
 
 import static jakarta.persistence.CascadeType.*;
@@ -23,7 +22,7 @@ public class Appointment {
             allocationSize = 1)
     private Long id;
 
-    @Column(name = "date")
+    @Column(name = "date",unique = true)
     private LocalDate date;
 
     @ManyToOne(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.LAZY)
@@ -35,6 +34,7 @@ public class Appointment {
 
 
     @ManyToOne(cascade = {REFRESH,MERGE,PERSIST,DETACH},fetch = FetchType.LAZY)
+
     private Department department;
 
     @ManyToOne(cascade = {REFRESH,PERSIST,DETACH,MERGE},fetch = FetchType.LAZY)

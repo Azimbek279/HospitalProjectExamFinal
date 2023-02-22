@@ -42,7 +42,7 @@
             left: 0;
             padding: 20px 10px 10px;
             font-size: 1em;
-            color: #8f8f8f;
+            color: white;
             letter-spacing: 00.05em;
             transition: 0.5s;
             pointer-events: none;
@@ -186,8 +186,9 @@
 
     <br>
     <div class="inputbox">
-        <input type="date"  name="DeadLine" th:field="*{date}" placeholder="DeadLine">
-        <span>Date</span>
+        <span>DATE</span>
+        <br>
+        <input type="date"  required="required" name="DeadLine" th:field="*{date}" placeholder="DeadLine">
         <i></i>
     </div>
     <br>

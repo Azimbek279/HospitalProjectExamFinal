@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class Department {
     @ManyToOne(cascade = {REFRESH,PERSIST,MERGE,DETACH},fetch = FetchType.EAGER)
     private Hospital hospital;
 
-    @OneToMany(cascade = {REFRESH,MERGE,DETACH,PERSIST},fetch = FetchType.EAGER,mappedBy = "department")
+    @OneToMany(cascade = {REFRESH,MERGE,DETACH,PERSIST,REMOVE},fetch = FetchType.EAGER,mappedBy = "department")
     private List<Appointment> appointments = new ArrayList<>();
 
     public void addAppointment(Appointment appointment){

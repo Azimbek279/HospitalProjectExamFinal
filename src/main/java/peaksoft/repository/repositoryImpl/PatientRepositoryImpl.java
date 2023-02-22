@@ -61,20 +61,12 @@ public class PatientRepositoryImpl implements PatientRepository {
     public void deletePatientById(Long id) {
         Patient patient = entityManager.find(Patient.class,id);
         patient.getHospital().minusPatient();
+        entityManager.remove(entityManager.find(Appointment.class,id));
         entityManager.remove(entityManager.find(Patient.class,id));
     }
 
     @Override
     public void updatePatient(Long patientId, Patient patient) {
-//        entityManager.createQuery("update Patient set firstName = :f, lastName = :l," +
-//                        "phoneNumber = :p, gender = :g, email = :e where id = :id")
-//                .setParameter("f", patient.getFirstName())
-//                .setParameter("l", patient.getLastName())
-//                .setParameter("p", patient.getPhoneNumber())
-//                .setParameter("g", patient.getGender())
-//                .setParameter("e", patient.getEmail())
-//                .setParameter("id", patientId)
-//                .executeUpdate();
         Patient patient1 = entityManager.find(Patient.class, patientId);
         patient1.setFirstName(patient.getFirstName());
         patient1.setLastName(patient.getLastName());
