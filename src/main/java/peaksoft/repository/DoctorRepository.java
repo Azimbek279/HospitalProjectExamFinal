@@ -1,7 +1,6 @@
 package peaksoft.repository;
 
 import peaksoft.model.Doctor;
-import peaksoft.model.Patient;
 
 import java.io.IOException;
 import java.util.List;

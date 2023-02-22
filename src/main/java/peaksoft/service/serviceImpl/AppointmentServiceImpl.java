@@ -6,7 +6,6 @@ import peaksoft.model.Appointment;
 import peaksoft.repository.AppointmentRepository;
 import peaksoft.service.AppointmentService;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service

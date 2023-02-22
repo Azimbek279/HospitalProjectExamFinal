@@ -4,9 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import peaksoft.model.Doctor;
-import peaksoft.model.Hospital;
 import peaksoft.repository.DoctorRepository;
-import peaksoft.repository.HospitalRepository;
 import peaksoft.service.DoctorService;
 
 import java.io.IOException;
@@ -50,7 +48,12 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public void updateDoctor(Long doctorId, Doctor doctor) {
-        doctorRepository.updateDoctor(doctorId,doctor);
+        Doctor doctor1 = doctorRepository.getDoctorById(doctorId);
+        doctor1.setFirstName(doctor.getFirstName());
+        doctor1.setLastName(doctor.getLastName());
+        doctor1.setEmail(doctor.getEmail());
+        doctor1.setPosition(doctor.getPosition());
+        doctorRepository.updateDoctor(doctorId,doctor1);
     }
 
     @Override

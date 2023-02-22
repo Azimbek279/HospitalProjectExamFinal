@@ -158,8 +158,9 @@
 </head>
 <body>
 
+
 <h1><span class="blue">&lt;</span>Kyrgyzstan<span class="blue">&gt;</span> <span class="yellow">Hospital</pan></h1>
-<h2>IT-SCHOOL -<a href="https://github.com/pablorgarcia" target="_blank"> PEAKSOFT HOUSE</a></h2>
+<h2>IT-SCHOOL -<a href="https://peaksoft.house" target="_blank"> PEAKSOFT HOUSE</a></h2>
 
 <table class="container" >
   <thead>
@@ -168,19 +169,17 @@
     <th><h1>HospitalAddress</h1></th>
     <th><h1>Patient Count</h1></th>
     <th><h1>Doctor Count</h1></th>
-<!--    <th><h1>Clicks</h1></th>-->
-<!--    <th><h1>Average</h1></th>-->
+
   </tr>
   </thead>
 
-<!--  <tbody >-->
+
   <tr th:each="hospital:${hospitals}">
     <td th:text="${hospital.getName()}"></td>
     <td th:text="${hospital.getAddress()}"></td>
     <td th:text="${hospital.getCount()}"></td>
     <td th:text="${hospital.getDoctorCount()}"></td>
-<!--    <td>6369</td>-->
-<!--    <td>01:32:50</td>-->
+
 
 
 
@@ -195,12 +194,6 @@
       </form>
     </a>
 
-
-<!--    <td>-->
-<!--      <form th:method="DELETE" th:action="@{/hospitals/{hospitalId}/delete(hospitalId=${hospital.getId()})}">-->
-<!--        <input type="submit" value="Delete" style="height: 40px; width: 95px; background-color:rosybrown;"/>-->
-<!--      </form>-->
-<!--    </td>-->
 
     <td>
       <a th:href="@{/patients/{id}(id=${hospital.id})}">
@@ -226,46 +219,11 @@
       </a>
     </td>
 
-<!--    <td>-->
-<!--      <a th:href="@{/appointments/{id}(id=${hospital.id})}">-->
-<!--        <button>Appointment</button>-->
-<!--      </a>-->
-<!--    </td>-->
   </tr>
-<!--  </tbody>-->
 
 
 
-<!--  <tr>-->
-<!--    <td>Twitter</td>-->
-<!--    <td>7326</td>-->
-<!--    <td>10437</td>-->
-<!--    <td>00:51:22</td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>Amazon</td>-->
-<!--    <td>4162</td>-->
-<!--    <td>5327</td>-->
-<!--    <td>00:24:34</td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>LinkedIn</td>-->
-<!--    <td>3654</td>-->
-<!--    <td>2961</td>-->
-<!--    <td>00:12:10</td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>CodePen</td>-->
-<!--    <td>2002</td>-->
-<!--    <td>4135</td>-->
-<!--    <td>00:46:19</td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>GitHub</td>-->
-<!--    <td>4623</td>-->
-<!--    <td>3486</td>-->
-<!--    <td>00:31:52</td>-->
-<!--  </tr>-->
+
 
 </table>
 <button style=" display: block; margin:auto; font-size:30px;" onclick="window.location.href = 'hospitals/new'">

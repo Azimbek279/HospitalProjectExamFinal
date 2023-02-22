@@ -2,10 +2,10 @@ package peaksoft.service.serviceImpl;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import peaksoft.model.Hospital;
+import org.springframework.web.server.ResponseStatusException;
 import peaksoft.model.Patient;
-import peaksoft.repository.HospitalRepository;
 import peaksoft.repository.PatientRepository;
 import peaksoft.service.PatientService;
 
@@ -34,6 +34,7 @@ public class PatientServiceImpl implements PatientService {
         Patient patient1 = new Patient();
         patient1.setFirstName(patient.getFirstName());
         patient1.setLastName(patient.getLastName());
+        validation(patient.getPhoneNumber().replace(" ", ""));
         patient1.setPhoneNumber(patient.getPhoneNumber());
         patient1.setEmail(patient.getEmail());
         patient1.setGender(patient.getGender());
@@ -52,11 +53,38 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public void updatePatient(Long patientId, Patient patient) {
-        patientRepository.updatePatient(patientId,patient);
+        Patient patient1 = patientRepository.getPatientById(patientId);
+        patient1.setFirstName(patient.getFirstName());
+        patient1.setLastName(patient.getLastName());
+        patient1.setEmail(patient.getEmail());
+        validation(patient.getPhoneNumber().replace(" ", ""));
+        patient1.setPhoneNumber(patient.getPhoneNumber());
+        patient1.setGender(patient.getGender());
+        patientRepository.updatePatient(patientId, patient);
     }
 
     @Override
     public void assignPatient(Long appointmentId, Long patientId) throws IOException {
-        patientRepository.assignPatient(appointmentId,patientId);
+        patientRepository.assignPatient(appointmentId, patientId);
+    }
+
+    public void validation(String phoneNumber) {
+        if (phoneNumber.length() == 13
+                && phoneNumber.charAt(0) == '+'
+                && phoneNumber.charAt(1) == '9'
+                && phoneNumber.charAt(2) == '9'
+                && phoneNumber.charAt(3) == '6'){
+            int count = 0;
+            for (Character i : phoneNumber.toCharArray()) {
+                if (count != 0){
+                    if (!Character.isDigit(i)){
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"номер!!!");
+                    }
+                }
+                count++;
+            }
+        }else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"номер!!!");
+        }
     }
 }

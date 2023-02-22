@@ -1,9 +1,7 @@
 package peaksoft.repository;
 
 import peaksoft.model.Appointment;
-import peaksoft.model.Department;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface AppointmentRepository {

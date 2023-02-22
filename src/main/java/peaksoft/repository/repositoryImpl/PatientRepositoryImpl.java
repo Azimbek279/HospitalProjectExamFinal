@@ -66,13 +66,21 @@ public class PatientRepositoryImpl implements PatientRepository {
 
     @Override
     public void updatePatient(Long patientId, Patient patient) {
+//        entityManager.createQuery("update Patient set firstName = :f, lastName = :l," +
+//                        "phoneNumber = :p, gender = :g, email = :e where id = :id")
+//                .setParameter("f", patient.getFirstName())
+//                .setParameter("l", patient.getLastName())
+//                .setParameter("p", patient.getPhoneNumber())
+//                .setParameter("g", patient.getGender())
+//                .setParameter("e", patient.getEmail())
+//                .setParameter("id", patientId)
+//                .executeUpdate();
         Patient patient1 = entityManager.find(Patient.class, patientId);
         patient1.setFirstName(patient.getFirstName());
         patient1.setLastName(patient.getLastName());
         patient1.setEmail(patient.getEmail());
-        patient1.setEmail(patient.getPhoneNumber());
+        patient1.setPhoneNumber(patient.getPhoneNumber());
         patient1.setGender(patient.getGender());
-//        patient1.setHospital(patient.getHospital());
         entityManager.merge(patient1);
     }
 

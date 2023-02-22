@@ -44,6 +44,9 @@ public class HospitalRepositoryImpl implements HospitalRepository {
 
     @Override
     public void updateHospital(Hospital hospital) {
-        entityManager.merge(hospital);
+        Hospital hospital1 = getHospitalById(hospital.getId());
+        hospital1.setName(hospital.getName());
+        hospital1.setAddress(hospital.getAddress());
+        entityManager.merge(hospital1);
     }
 }

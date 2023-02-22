@@ -202,10 +202,9 @@
         </div>
         <div class="face face2">
             <div class="content">
-<!--                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>-->
-<!--                <a href="#" type="button">Read More</a>-->
 
-                <td><a th:href="@{/departments/edit/{hospitalId}(hospitalId=${hospitalId})}">
+
+                <td><a th:href="@{/departments/edit/{departmentId}(departmentId=${department.getId()})}">
                     <button>Update</button>
                 </a>
                 <br>

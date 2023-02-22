@@ -68,13 +68,16 @@
     </style>
 
 
+
+
 </head>
 <body>
 <div style="text-align: left; margin: 10px">
     <a th:href="@{/hospitals}">
-        <button class="button1" style="font-size: 20px; display: block:  margin: auto"> Back</button>
+        <button class="button1" style="font-size: 20px; display: block  margin: auto"> Back</button>
     </a>
 </div>
+
 <!--<marquee behavior="scroll"  direction="left" ><span style="color: red; ">Мухаммед агай самый лучший!</span></marquee>-->
 
 <div class="text-center">
@@ -99,10 +102,9 @@
     <tr th:each="appointment:${appointments}">
         <td th:text="${appointment.getId()}"></td>
         <td th:text="${appointment.getDate()}"></td>
-<!--        <td th:text="${company.locatedCountry}"></td>-->
-<!--        <td th:text="${company.count}"></td>-->
 
-        <td><a th:href="@{/appointments/edit/{hospitalId}(hospitalId=${hospitalId})}">
+
+        <td><a th:href="@{/appointments/edit/{appointmentId}(appointmentId=${appointment.getId()})}">
             <button>Update</button>
         </a>
 
@@ -157,10 +159,7 @@
             </form>
         </td>
 
-<!--        <td><a th:href="@{/courses/courses/{id}(id=${company.id})}">-->
-<!--            <button style="height: 40px; width: 95px; background-color:yellow;">Course</button>-->
-<!--        </a>-->
-<!--        </td>-->
+
 
 
     </tr>

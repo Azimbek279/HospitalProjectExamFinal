@@ -20,13 +20,11 @@ import java.util.List;
 public class DepartmentRepositoryImpl implements DepartmentRepository {
     @PersistenceContext
     private final EntityManager entityManager;
-    private final DoctorRepository doctorRepository;
 
 
     @Autowired
-    public DepartmentRepositoryImpl(EntityManager entityManager, DoctorRepository doctorRepository) {
+    public DepartmentRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.doctorRepository = doctorRepository;
     }
 
     @Override
@@ -55,159 +53,11 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public void deleteDepartmentById(Long id) {
         Department department = entityManager.find(Department.class, id);
-        Doctor doctor = entityManager.find(Doctor.class, id);
-
-//        if ( department.getDoctors() != null || department.getId() != null) {
-//            for (Department d : doctor.getDepartments()) {
-//                if (d.getId() == doctor.getId()) {
-//                    department.setDoctors(null);
-//                    doctor.setDepartments(null);
-//                    entityManager.merge(department);
-//                    entityManager.merge(doctor);
-//                    entityManager.remove(entityManager.find(Department.class, id));
-//                }
-//            }
-//        }
-
-//        if (department.getId() != null){
-//            entityManager.remove(entityManager.find(Department.class,id));
-//        } else if ( department.getDoctors() != null && department.getId() != null) {
-//            for (Department d : doctor.getDepartments()) {
-//                if (d.getId() == doctor.getId()) {
-//                    department.setDoctors(null);
-//                    doctor.setDepartments(null);
-//                    entityManager.merge(department);
-//                    entityManager.merge(doctor);
-//                    entityManager.remove(entityManager.find(Department.class, id));
-//                }
-//            }
-//        }
-
-
-//        if ( department.getId() != null){
-//            entityManager.remove(entityManager.find(Department.class, id));
-//        }
-
-//        if (department.getId() != null && department.getDoctors() != null) {
-//            for (Department d : doctor.getDepartments()) {
-//                if (d.getId() == doctor.getId()) {
-//                    department.setDoctors(null);
-//                    doctor.setDepartments(null);
-//                    entityManager.merge(department);
-//                    entityManager.merge(doctor);
-//                    entityManager.remove(entityManager.find(Department.class, id));
-//                }
-//            }
-//        }
-//        if (department.getDoctors() == null) {
-//            for (Department d : doctor.getDepartments()) {
-//                if (d.getId() == doctor.getId()) {
-//                    department.setDoctors(null);
-//                    doctor.setDepartments(null);
-//                    entityManager.merge(department);
-//                    entityManager.merge(doctor);
-//                    entityManager.remove(entityManager.find(Department.class, id));
-//                }
-//            }
-//        } else if (department.getId() != null) {
-//             entityManager.remove(entityManager.find(Department.class,id));
-//         }else {
-//            System.out.println("else");
-//            if (department.getId() != null && department.getDoctors() != null) {
-//                System.out.println("1");
-//                for (Department d : doctor.getDepartments()) {
-//                    System.out.println("2");
-//                    if (d.getId() == doctor.getId()) {
-//                        System.out.println("3");
-//                        department.setDoctors(null);
-//                        doctor.setDepartments(null);
-//                        entityManager.merge(department);
-//                        entityManager.merge(doctor);
-//                        System.out.println("4");
-//                        entityManager.remove(entityManager.find(Department.class, id));
-//                    }
-//                }
-//            }
-//        }
-
-//        else  if (department.getDoctors() == null) {
-//
-////                if (department.getId() == doctor.getId()) {
-//            department.setDoctors(null);
-////            doctor.setDepartments(null);
-//            entityManager.merge(department);
-////            entityManager.merge(doctor);
-//            entityManager.remove(entityManager.find(Department.class, id));
-//        }
-
+        for (int i = 0; i < department.getDoctors().size(); i++) {
+            department.getDoctors().get(i).getDepartments().remove(department);
+        }
+        entityManager.remove(department);
     }
-
-//            }
-//            entityManager.remove(entityManager.find(Department.class, id));
-
-
-
-
-//            for (Department d : doctor.getDepartments()) {
-//                if (d.getId() == doctor.getId()) {
-//                    department.setDoctors(null);
-//                    doctor.setDepartments(null);
-//                    entityManager.merge(department);
-//                    entityManager.merge(doctor);
-//                    entityManager.remove(entityManager.find(Department.class, id));
-//                }
-//            }
-//        }
-
-
-//        if (department.getDoctors() != null){
-//            for (Department d: doctor.getDepartments()) {
-//                if (d.getId() == doctor.getId()){
-//                    department.setDoctors(null);
-//                    doctor.setDepartments(null);
-//                    entityManager.merge(department);
-//                    entityManager.merge(doctor);
-//                    entityManager.remove(entityManager.find(Department.class,id));
-//                }
-//            }
-//        }else {
-//            entityManager.remove(entityManager.find(Department.class,id));
-//        }
-
-//        if(department.getDoctors() != doctor){
-//            System.out.println("123");
-//            entityManager.remove(entityManager.find(Department.class,id));
-//        } else {
-//            if(department.getDoctors() != null) {
-//                for (Department d : doctor.getDepartments()) {
-//                    if (d.getId() == doctor.getId()) {
-//                        department.setDoctors(null);
-//                        doctor.setDepartments(null);
-//                        entityManager.merge(department);
-//                        entityManager.merge(doctor);
-//                        entityManager.remove(entityManager.find(Department.class,id));
-//                    }
-//                }
-//        }else{
-//
-//            }
-//        }
-
-//        }else {
-//            System.out.println("kot boldu");
-////            department.setDoctors(null);
-////            entityManager.merge(department);
-////            entityManager.merge(doctor);
-//        }
-
-//        if (doctor == null){
-//            System.out.println("kirdi1w");
-//                    department.setDoctors(null);
-////                    doctor.setDepartments(null);
-//                    entityManager.merge(department);
-//            entityManager.remove(department);
-//        }/
-//    }
 
     @Override
     public void updateDepartment(Long departmentId, Department department) {

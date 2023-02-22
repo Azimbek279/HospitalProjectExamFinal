@@ -39,8 +39,6 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
                 throw new NotFoundException(String.format("Hospital with id %d not found", hospitalId));
             }
             Hospital hospital = entityManager.find(Hospital.class, hospitalId);
-
-
             appointment1.setHospital(hospital);
             appointment1.setDate(appointment.getDate());
             entityManager.persist(appointment1);
@@ -60,5 +58,6 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     public void updateAppointment(Long appointmentId, Appointment appointment) {
         Appointment appointment1 = entityManager.find(Appointment.class, appointmentId);
         appointment1.setDate(appointment.getDate());
+        entityManager.merge(appointment1);
     }
 }

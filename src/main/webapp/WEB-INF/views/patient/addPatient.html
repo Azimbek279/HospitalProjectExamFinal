@@ -10,10 +10,12 @@
     <style>
         .container {
             display: block;
-            /*margin: auto;*/
             margin-top: 100px;
             margin-left: 570px;
             font-size: 25px;
+        }
+        body{
+            background-image: url("https://t4.ftcdn.net/jpg/01/23/17/13/360_F_123171377_H89YRmICSVdLq4YGiEhhTZQD7Xa7JSwQ.jpg");
         }
     </style>
     <style>
@@ -207,7 +209,7 @@
 
     <div class="inputbox inputbox2">
 
-        <input  value="+996" required="required" maxlength="12" pattern="+996[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="+996 123 456 789" type="number" th:field="*{phoneNumber}">
+        <input   required="required" placeholder="+996" type="tel" th:field="*{phoneNumber}">
         <span></span>
         <i></i>
     </div>
@@ -222,12 +224,6 @@
     <br>
 
 
-<!--        <fieldset id="switch" class="radio" th:field="*{gender}">-->
-<!--            <input name="switch" id="on"  type="radio"   >-->
-<!--            <label for="on" th:value="${genderMale}" >MALE</label>-->
-<!--            <input name="switch" id="off" type="radio"  >-->
-<!--            <label for="off" th:value="${genderFeMale}" >FEMALE</label>-->
-<!--       </fieldset>-->
 
     <label >
         <select style="width: 200px" th:field="*{gender}">
@@ -239,14 +235,6 @@
 
 
 
-
-
-    <!--    <br>-->
-    <!--  <div class="inputbox">-->
-    <!--    <input required="required" type="text" th:field="*{logo}" >-->
-    <!--    <span>Logo</span>-->
-    <!--    <i></i>-->
-    <!--  </div>-->
     <br>
 
     <button class="shadow__btn" type="submit">Save Patient</button>

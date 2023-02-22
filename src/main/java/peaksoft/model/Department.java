@@ -31,13 +31,6 @@ public class Department {
     private List<Doctor> doctors = new ArrayList<>();
 
 
-    public void addDoctorNull(Doctor doctor){
-        if (doctors == null){
-            doctors = new ArrayList<>();
-        }
-        doctors.add(doctor);
-    }
-
     public void addDoctors(Doctor doctor){
         if (doctors == null){
             doctors = new ArrayList<>();

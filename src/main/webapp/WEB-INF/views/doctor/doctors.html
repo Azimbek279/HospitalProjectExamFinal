@@ -261,12 +261,7 @@
         <br>
 
 
-<!--        <ul class="social-icons">-->
-<!--            <li><a href="#"><i class="fa fa-instagram"></i></a></li>-->
-<!--            <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-<!--            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
-<!--            <li><a href="#"><i class="fa fa-codepen"></i></a></li>-->
-<!--        </ul>-->
+
 
 
         <td>
@@ -280,20 +275,16 @@
                             th:text="${department.name}"></option>
                 </select>
                 <input type="submit" name="text" class="input" value="sumbit" placeholder="Type here...">
-<!--                <input type="submit" value="submit"/>-->
             </form>
         </td>
 
-<!--        <td><a th:href="@{/doctors/edit/{id}(id=${hospitalId})}">-->
-<!--            <button>Department</button>-->
-<!--        </a>-->
-<!--            -->
+
         <br>
-        <td><a th:href="@{/doctors/edit/{hospitalId}(hospitalId=${hospitalId})}">
+        <td><a th:href="@{/doctors/edit/{doctorId}(doctorId=${doctor.getId()})}">
             <button>Update</button>
         </a>
         <br>
-<!--        <button class="btn draw-border" th:href="@{/doctors/edit/{id}(id=${hospitalId})}">UPDATE</button>-->
+
         <td><a >
             <form th:method="DELETE" th:action="@{/doctors/{id}/{hosId}(id=${doctor.getId()},hosId=${hospitalId})}">
                 <button>DELETE</button>

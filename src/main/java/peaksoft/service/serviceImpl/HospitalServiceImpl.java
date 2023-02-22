@@ -1,6 +1,5 @@
 package peaksoft.service.serviceImpl;
 
-import net.bytebuddy.utility.nullability.AlwaysNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import peaksoft.model.Hospital;
@@ -40,6 +39,9 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public void updateHospital(Hospital hospital) {
-        hospitalRepository.updateHospital(hospital);
+        Hospital hospital1 = getHospitalById(hospital.getId());
+        hospital1.setName(hospital.getName());
+        hospital1.setAddress(hospital.getAddress());
+        hospitalRepository.updateHospital(hospital1);
     }
 }
