@@ -49,7 +49,6 @@ public class Doctor {
     private List<Department> departments = new ArrayList<>();
 
 
-
     public void addDepartments(Department department){
         if (departments==null){
             departments = new ArrayList<>();
